@@ -1,8 +1,22 @@
 [package]
 name = "search-once"
 version = "0.1.0"
+authors = ["Takahiro Miyoshi <takahiro-miyoshi@sankichi.net>"]
 edition = "2021"
+description = "A tool to search multiple websites at once"
+readme = "README.md"
+homepage = "https://github.com/sankichi92/search-once"
+repository = "https://github.com/sankichi92/search-once"
+license = "MIT"
+keywords = ["cli", "search"]
+categories = ["command-line-utilities"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.79"
+clap = { version = "4.4.13", features = ["derive"] }
+confy = { version = "0.5.1", default-features = false, features = ["yaml_conf"] }
+open = "5.0.1"
+percent-encoding = "2.3.1"
+serde = { version = "1.0.195", features = ["derive"] }

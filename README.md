@@ -39,4 +39,4 @@ sites:
 
 The `%s` placeholder in the URL will be replaced with your query.
 
-The default configuration file will be automatically placed in the appropriate path based on your OS. You can find the path by running `search-once` without the `--config` option.
+The default configuration file will be automatically placed in the appropriate path based on your OS. You can find the path by running `search-once <QUERY>` without the `--config` option.

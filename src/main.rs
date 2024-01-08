@@ -16,14 +16,14 @@ fn main() -> Result<()> {
     println!("Loading config: {}", config_path.display());
     let config: Config = confy::load_path(config_path)?;
 
-    if config.sites().count() <= 1 {
+    if config.sites.len() <= 1 {
         eprintln!("WARNING: Only one site configured. Please add more sites to the config file to utilize this tool!");
     }
 
     let encoded_query =
         percent_encoding::utf8_percent_encode(&args.query, NON_ALPHANUMERIC).to_string();
 
-    for site in config.sites() {
+    for site in config.sites {
         let url = site.url.replace("%s", &encoded_query);
         println!("{}:\t{}", site.name, url);
         open::that(url)?;
@@ -34,7 +34,7 @@ fn main() -> Result<()> {
 
 #[derive(Parser)]
 #[command(author, version, about)]
-pub struct Cli {
+struct Cli {
     query: String,
 
     #[arg(short, long, value_name = "FILE")]
@@ -42,7 +42,7 @@ pub struct Cli {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct Config {
+struct Config {
     sites: Vec<Site>,
 }
 
@@ -57,14 +57,8 @@ impl Default for Config {
     }
 }
 
-impl Config {
-    pub fn sites(&self) -> impl Iterator<Item = &Site> {
-        self.sites.iter()
-    }
-}
-
 #[derive(Serialize, Deserialize)]
-pub struct Site {
+struct Site {
     name: String,
     url: String,
 }

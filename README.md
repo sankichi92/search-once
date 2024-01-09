@@ -8,6 +8,8 @@ A command line application to search multiple websites at once.
 $ cargo install search-once
 ```
 
+If you use it on WSL (Windows Subsystem for Linux), you'll require the `wslview` command included in [wslu](https://wslutiliti.es/wslu/).
+
 ## Usage
 
 ```console

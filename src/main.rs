@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 use clap::Parser;
 use percent_encoding::NON_ALPHANUMERIC;
 use serde::{Deserialize, Serialize};
@@ -8,16 +8,16 @@ use serde::{Deserialize, Serialize};
 fn main() -> Result<()> {
     let args = Cli::parse();
 
-    let config_path = args.config.unwrap_or(confy::get_configuration_file_path(
-        env!("CARGO_PKG_NAME"),
-        None,
-    )?);
+    let config_path = args.config.unwrap_or(
+        confy::get_configuration_file_path(env!("CARGO_PKG_NAME"), None)
+            .context("could not determine the default config path")?,
+    );
 
-    println!("Loading config: {}", config_path.display());
-    let config: Config = confy::load_path(config_path)?;
+    println!("Config: {}", config_path.display());
+    let config: Config = confy::load_path(config_path).context("could not load the config file")?;
 
     if config.sites.len() <= 1 {
-        eprintln!("WARNING: Only one site configured. Please add more sites to the config file to utilize this tool!");
+        eprintln!("WARNING: Only one site configured. Please add more sites to your config file.");
     }
 
     let encoded_query =
@@ -26,7 +26,7 @@ fn main() -> Result<()> {
     for site in config.sites {
         let url = site.url.replace("%s", &encoded_query);
         println!("{}:\t{}", site.name, url);
-        open::that(url)?;
+        open::that(url).context("could not open the URL")?;
     }
 
     Ok(())

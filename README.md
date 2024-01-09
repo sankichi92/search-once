@@ -43,7 +43,9 @@ The `%s` placeholder in the URL will be replaced with your query.
 
 The default configuration file will be automatically placed in the appropriate path based on your OS. You can find the path by running `search-once <QUERY>` without the `--config` option.
 
-## Publishing a new version
+## Development
+
+### Publishing a new version
 
 1. Bump the version in `Cargo.toml`.
 2. Create a git commit, push it, and ensure that the CI passes.

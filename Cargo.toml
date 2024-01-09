@@ -1,6 +1,6 @@
 [package]
 name = "search-once"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Takahiro Miyoshi <takahiro-miyoshi@sankichi.net>"]
 edition = "2021"
 description = "A tool to search multiple websites at once"

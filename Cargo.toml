@@ -17,6 +17,6 @@ categories = ["command-line-utilities"]
 anyhow = "1.0.100"
 clap = { version = "4.5.51", features = ["derive"] }
 confy = { version = "1.0.0", default-features = false, features = ["yaml_conf"] }
-open = "5.3.2"
+open = "5.3.3"
 percent-encoding = "2.3.2"
 serde = { version = "1.0.228", features = ["derive"] }
